@@ -151,7 +151,9 @@ Marketplace::Marketplace()
 			}
 
 			// remove dir
-			std::filesystem::remove_all(modules_path / dir_name);
+			QDir dir(QString::fromStdString((modules_path / dir_name).string()));
+			dir.removeRecursively();
+			//std::filesystem::remove_all(modules_path / dir_name);
 
 			for(size_t i = 0; i < num_modules; i++)
 				this->removeProperty("module"+std::to_string(i));
